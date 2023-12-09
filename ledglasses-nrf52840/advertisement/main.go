@@ -14,9 +14,9 @@ func main() {
 	println("Enabling stack in 3 .. 2 .. 1")
 
 	time.Sleep(3 * time.Second)
-
-	println("Enabling BLE stack")
 	must("enable BLE stack", adapter.Enable())
+
+	// must("enable BLE stack", adapter.Enable())
 
 	time.Sleep(1 * time.Second)
 	println("advertising...")
@@ -37,6 +37,8 @@ func main() {
 
 func must(action string, err error) {
 	if err != nil {
-		panic("failed to " + action + ": " + err.Error())
+		println("failed to " + action + ": " + err.Error())
+		time.Sleep(3 * time.Second)
+		// panic("failed to " + action + ": " + err.Error())
 	}
 }

@@ -1,6 +1,6 @@
 module github.com/bgould/board-demos
 
-go 1.21.4
+go 1.20
 
 require (
 	tinygo.org/x/bluetooth v0.8.0

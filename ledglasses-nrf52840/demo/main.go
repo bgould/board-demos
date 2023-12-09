@@ -105,10 +105,12 @@ func main() {
 		vdiv.Configure(machine.ADCConfig{})
 		for {
 			val := vdiv.Get() >> 4
-			vbat := (float32(val*2) / float32(0xFFFF>>4)) * 3.3
+			// vbat := (float32(val*2) / float32(0xFFFF>>4)) * 3.3
+			vbat := int(val) * 2000 / 1241 // adcValue * 2000 / (4095 / 3.3)
 			println(
-				"\rVBat:", strconv.FormatFloat(float64(vbat), 'f', 6, 32), ";",
-				"ADC measurment: ", strconv.FormatUint(uint64(val), 2),
+				"\rVBat:", strconv.Itoa(int(vbat)),
+				// "\rVBat:", strconv.FormatFloat(float64(vbat), 'f', 6, 32), ";",
+				// "ADC measurement:", strconv.FormatUint(uint64(val), 2), strconv.FormatUint(uint64(val), 10),
 				"                    ")
 			// float32 = analogRead(VBATPIN)
 			// measuredvbat *= 2    // we divided by 2, so multiply back
